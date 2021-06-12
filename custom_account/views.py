@@ -158,11 +158,10 @@ def edit_profile(request):
 
 def delete_process(request):
     if request.method == 'POST':
-
         user = authenticate(request, email_phone=request.user.email_phone, password=request.POST.get('password'))
         if user is not None:
             user.delete()
-            return redirect('home')
+            return redirect('main')
         else:
             messages.error(request, 'password incorrect')
 
@@ -186,7 +185,6 @@ def load_zips(request):
     # return render(request, 'persons/city_dropdown_list_options.html', {'zips': zips})
 
     return JsonResponse(list(zips.values('id', 'name')), safe=False)
-
 
 
 def password_reset_request(request):
@@ -215,7 +213,7 @@ def password_reset_request(request):
                     "uid": urlsafe_base64_encode(force_bytes(user.pk)),
                     "user": user,
                     'token': default_token_generator.make_token(user),
-                    'protocol': 'http',
+                    'protocol': 'https',
                 }
 
                 email = render_to_string(password_reset_email, context)
@@ -268,8 +266,3 @@ def forgot_password_reset(request):
             return redirect('login_process')
     context = {"form": form}
     return render(request, "registration/password_reset_form.html", context)
-
-
-
-
-

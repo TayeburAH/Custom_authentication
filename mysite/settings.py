@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&7g@%cp4_a(pn-!gr5r9e4r-q!2*8c9ru6&t5gsqam0n%os$4k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-#
-ALLOWED_HOSTS = ['127.0.0.1:8000','authentication-my-app.herokuapp.com']
+DEBUG = True
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['127.0.0.1:8000','authentication-my-app.herokuapp.com']
 
 INSTALLED_APPS = [
     # 'custom_account.apps.AccountConfig',
@@ -73,9 +73,6 @@ AUTHENTICATION_BACKENDS = (
 # Must change the site to localhost:8000/
 # Must use python manage.py runserver localhost:8080
 SITE_ID = 1
-
-
-
 
 
 # ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
