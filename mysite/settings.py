@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&7g@%cp4_a(pn-!gr5r9e4r-q!2*8c9ru6&t5gsqam0n%os$4k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
+#
 ALLOWED_HOSTS = ['127.0.0.1:8000','authentication-my-app.herokuapp.com']
 
 INSTALLED_APPS = [
@@ -195,6 +195,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
