@@ -1,0 +1,112 @@
+{% extends 'main.html' %}
+{% load socialaccount %}
+{% providers_media_js %}
+{%  block styles %}
+
+
+.flex {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+}
+
+@media (max-width:991.98px) {
+    .padding {
+        padding: 1.5rem
+    }
+}
+
+@media (max-width:767.98px) {
+    .padding {
+        padding: 1rem
+    }
+}
+
+.padding {
+    padding: 5rem
+}
+
+.card {
+    background: #fff;
+    border-width: 0;
+    border-radius: .25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+    margin-bottom: 1.5rem
+}
+
+.card-header {
+    background-color: transparent;
+    border-color: rgba(160, 175, 185, .15);
+    background-clip: padding-box
+}
+
+.card-body p:last-child {
+    margin-bottom: 0
+}
+
+.card-hide-body .card-body {
+    display: none
+}
+
+.form-check-input.is-invalid~.form-check-label,
+.was-validated .form-check-input:invalid~.form-check-label {
+    color: #f54394
+}
+
+
+.icon {
+  position: relative;
+  top: 5px;
+  left: -3px;
+}
+{%  endblock styles %}
+
+
+{% block login %}
+<div id="content" class="flex">
+    <div class="">
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-center">
+                                <div class="card">
+                                    <h3 class="card-header text-center"><strong>Login to your account</strong></h3>
+                                    <div class="card-body">
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group"><label class="text-muted" for="exampleInputEMail_Phone">Email or mobile number</label>
+                                                <input name="email_phone" type="text" class="form-control" id="exampleInputEMail_Phone"  placeholder="+880 or email">
+                                            </div>
+                                            <div class="form-group"><label class="text-muted" for="exampleInputPassword1">Password</label>
+                                                <input type="password" name="password"  class="form-control" id="exampleInputPassword1" placeholder="Password"> <small id="passwordHelp" class="form-text text-muted">your password is saved in encrypted form</small>
+                                            </div>
+
+                                             <button type="submit" class="btn btn-primary">Submit</button>
+                                             <a href="{% url 'password_reset' %}" class="float-right">Forgot password ?</a>
+
+                                        </form>
+
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{% provider_login_url 'facebook' method='oauth2' %}" class="btn btn-primary my-1 w-75"><span class="material-icons icon">facebook
+                                        </span>Log in with Facebook</a>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{% provider_login_url 'google' method='oauth2' %}" class="btn btn-danger my-1 w-75">Log in with Gmail</a>
+                                    </div>
+
+                                    {% for message in messages %}
+                                    <p class="text-center">  {{ message }} </p>
+                                    {% endfor %}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock login %}

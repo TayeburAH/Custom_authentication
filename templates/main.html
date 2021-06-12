@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Shopping Website</title>
+
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+	<!-- Bootstrap CSS Must be first -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<!-- Icons -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	<!-- Built in CSS and JS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+
+
+	<!--  Bootstrap, Popper, ajax -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+
+
+	<style>
+	.bg-custom-1 {
+	  background-color: #85144b;
+	}
+
+	.bg-custom-2 {
+	background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+	}
+
+	{%  block styles %}
+	{%  endblock styles %}
+	</style>
+	<script>
+		var user = '{{request.user.email_phone}}';
+		{% block jQuery_top %}
+		{% endblock jQuery_top %}
+
+	</script>
+</head>
+<body>
+{%  include 'navbar.html' %}
+<div class="container-fluid" >
+
+{% block heading %}
+{% endblock heading %}
+
+{% block signup %}
+{% endblock signup %}
+{% block login %}
+{% endblock login %}
+
+<div class="container-fluid mt-5">
+{% block content %}
+
+{% endblock content %}
+</div>
+</div>
+
+
+
+</body>
+</html>

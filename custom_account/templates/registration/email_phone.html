@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<h3>Password reset</h3>
+
+<p>Forgotten your password? Enter your email address or mobile number below, and we’ll send an email or sms.</p>
+
+<form id="form_email_phone" method="post" action="{% url  'check_email_or_phone' %}">
+	{% csrf_token %}
+		  <div class="row">
+		  <div class="col-6">
+					 <div class="form-group">
+						 <input name="email_phone" class="form-control" id="email_phone" placeholder="Email or +880">
+					 </div>
+		  </div>
+          </div>
+	<button type="submit" class="btn btn-primary display-inline">Submit</button></a>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,109 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+<a href="{%  url 'password_change' %}" class="btn btn-success">Password change</a>
+<a href="{%  url 'delete_process' %}" class="btn btn-danger">Delete account</a>
+
+{%  load crispy_forms_tags %}
+<div class="d-flex justify-content-center m-5">
+
+<form method="POST" >
+    {% csrf_token %}
+          <h3 class="text-center">Update</h3>
+          <div class="row">
+              <div class="col-6">
+                {{ form.first_name|as_crispy_field }}
+              </div>
+
+              <div class="col-6">
+                {{ form.last_name|as_crispy_field }}
+              </div>
+          </div>
+
+            <div class="row">
+              <div class="col-6">
+                {{ form.division|as_crispy_field }}
+              </div>
+
+              <div class="col-6">
+                {{ form.city|as_crispy_field }}
+              </div>
+            </div>
+
+            <div class="row ">
+              <div class="col-3 ml-auto">
+                {{ form.zip|as_crispy_field }}
+              </div>
+            </div>
+
+            <div class="row ">
+              <div class="col-12">
+                {{ form.address|as_crispy_field }}
+              </div>
+            </div>
+
+
+
+    <button type="submit" class="btn btn-success">Save</button>
+    {% for message in messages %}
+    <p class="text-center">  {{ message }} </p>
+    {% endfor %}
+ </form>
+</div>
+
+
+<script>
+$("#id_division").change(function () {
+        const divisionId = $(this).val();  // get the selected country ID from the HTML input
+        var url = '/load-cities/'
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'division_id': divisionId,       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+               // $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+
+
+                // Second select
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (city) {
+                    city.id= parseInt(city.id);
+                    html_data += `<option value="${city.id}">${city.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_city").html(html_data);
+
+
+            }
+        });
+
+    });
+
+    $("#id_city").change(function () {
+        const cityId = $(this).val();  // get the selected country ID from the HTML input
+        var url = '/load-zips/'
+        console.log(cityId);
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'city_id': cityId,       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+
+                // Third select
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (zip) {
+                    html_data += `<option value="${zip.id}">${zip.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_zip").html(html_data);
+            }
+        });
+    });
+
+</script>
+{% endblock content %}

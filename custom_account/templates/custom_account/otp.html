@@ -1,0 +1,100 @@
+{% extends 'main.html' %}
+{% load custom_tags %}
+
+{%  block styles %}
+
+
+.flex {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto
+}
+
+@media (max-width:991.98px) {
+    .padding {
+        padding: 1.5rem
+    }
+}
+
+@media (max-width:767.98px) {
+    .padding {
+        padding: 1rem
+    }
+}
+
+.padding {
+    padding: 5rem
+}
+
+.card {
+    background: #fff;
+    border-width: 0;
+    border-radius: .25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+    margin-bottom: 1.5rem
+}
+
+.card-header {
+    background-color: transparent;
+    border-color: rgba(160, 175, 185, .15);
+    background-clip: padding-box
+}
+
+.card-body p:last-child {
+    margin-bottom: 0
+}
+
+.card-hide-body .card-body {
+    display: none
+}
+
+.form-check-input.is-invalid~.form-check-label,
+.was-validated .form-check-input:invalid~.form-check-label {
+    color: #f54394
+}
+
+{%  endblock styles %}
+
+
+{% block login %}
+<div id="content" class="flex">
+    <div class="">
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            {% if request.user.is_authenticated %}
+                            {% if request.user.email_phone|check  %}
+                            <div class="card-header"><strong>Please confirm your mobile number +880{{email_phone}}</strong></div>
+                            {% else %}
+                            <div class="card-header"><strong>Please confirm your email ID {{email_phone}}</strong></div>
+                            {% endif %}
+                            {% endif %}
+                            <div class="card-body">
+                                <form method="POST" {% if not request.user.is_authenticated %} action="{% url 'forgot_password_otp_maker_checker' %}" {% endif %}>
+                                    {% csrf_token %}
+                                        <input name="otp" type="text" class="form-control my-3" id="Inputotp"  placeholder="Enter OTP">
+                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                    {% if request.user.is_authenticated %}
+                                    <a href="{% url 'send_otp' %}" class = 'ml-auto'>Resend OTP ?</a>
+                                    {% else %}
+                                    <a href="{% url 'forgot_password_otp_maker_checker' %}" class = 'ml-auto'>Resend OTP ?</a>
+                                    {% endif %}
+
+                                </form>
+
+
+                            </div>
+
+                            {% for message in messages %}
+                            <p class="text-center">  {{ message }} </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock login %}
