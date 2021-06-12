@@ -204,7 +204,8 @@ def password_reset_request(request):
                 # ...filter(Q(email=data) | Q(username=data))
                 # but with this you may need to change the password_reset form as well.
 
-                subject = "registration/password_reset_subject.txt"
+                # subject = "registration/password_reset_subject.txt" Does not seem to work
+                subject = 'Request for password change'
                 password_reset_email = "registration/password_reset_email.html"
                 context = {
                     "email": user.email,
