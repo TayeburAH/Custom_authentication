@@ -182,19 +182,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
 MEDIA_URL = '/media/'  # to make a url
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # This is where we are going to upload the pictures
 
-# Heroku runs collectstatic and puts all static files here
+
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Heroku runs collectstatic and puts all static files here
 
 # point to static outside app directory
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
