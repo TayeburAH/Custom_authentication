@@ -2,17 +2,22 @@
 {%  load custom_tags %}
 
 <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-  <a class="navbar-brand" href="{% url 'main' %}">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'main' %}">
     <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/logo_white.png" width="30" height="30" alt="logo">
-    Shopper
+    Authenticate User
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbar-list-4">
-    <ul class="navbar-nav">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="{% url 'main' %}" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {% if request.user.is_authenticated %}
             <img   {% if user|check_social_user %}
                         src="{% image_return user %}"
@@ -21,31 +26,33 @@
                    {% endif %}
 
                     width="40" height="40" class="rounded-circle">
+              {% else %}
+              <img src="{% static 'images/Unkknown_user.png' %}" width="40" height="40" class="rounded-circle">
             {% endif %}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          {% if request.user.is_authenticated %}
-            {% if user|check_social_user %}
-            <a class="dropdown-item" href="">logged in <strong>{{ user.socialaccount_set.filter.first.provider }}</strong></a>
-            {% else %}
-            <a class="dropdown-item" href="">logged in as <strong>{{ request.user.email_phone }}</strong></a>
-            {% endif %}
-              <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
-              <a class="dropdown-item" href="{% url 'logout_process' %}">Log out</a>
-            {% else %}
-            <a class="dropdown-item" href="{%  url 'login_process' %}">Log in</a>
-            <a class="dropdown-item" href="{%  url 'sign_up' %}">Create Account</a>
-            <a class="dropdown-item" href="{% url 'password_reset' %}" >Forgot password</a>
-            {% endif %}
-        </div>
-      </li>
-    </ul>
-  </div>
-    <div>
-          <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-    </div>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
+            {% if request.user.is_authenticated %}
+            {% if user|check_social_user %}
+            <li><a class="dropdown-item" href="">logged in <strong>{{ user.socialaccount_set.filter.first.provider }}</strong></a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="">logged in as <strong>{{ request.user.email_phone }}</strong></a></li>
+            {% endif %}
+            <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout_process' %}">Log out</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="{%  url 'login_process' %}">Log in</a></li>
+            <li><a class="dropdown-item" href="{%  url 'sign_up' %}">Create Account</a></li>
+            <li><a class="dropdown-item" href="{% url 'password_reset' %}" >Forgot password</a></li>
+            {% endif %}
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
 </nav>
