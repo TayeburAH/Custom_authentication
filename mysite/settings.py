@@ -94,7 +94,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'     # Don't verify the email account
 LOGIN_REDIRECT_URL = '/'
 
 # Redirect after logout
-LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/main/'
+LOGOUT_REDIRECT_URL = 'https://socialauthcheck.herokuapp.com/'
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
