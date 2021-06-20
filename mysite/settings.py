@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-&7g@%cp4_a(pn-!gr5r9e4r-q!2*8c9ru6&t5gsqam0n%os$4k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['127.0.0.1:8000','authentication-my-app.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1:8000','socialauthcheck.herokuapp.com']
 
 INSTALLED_APPS = [
     # 'custom_account.apps.AccountConfig',
