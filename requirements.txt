@@ -28,3 +28,5 @@ twilio==6.59.0
 urllib3==1.26.5
 validate-email==1.3
 whitenoise==5.2.0
+
+django-heroku==0.3.1
