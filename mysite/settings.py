@@ -201,8 +201,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tayebur@canadaeducationbd.com'  # must have 'Less secure app access' turned on go to https://myaccount.google.com/u/1/security
-EMAIL_HOST_PASSWORD = '687687687687'
+EMAIL_HOST_USER = os.environ['email']  # must have 'Less secure app access' turned on go to https://myaccount.google.com/u/1/security
+EMAIL_HOST_PASSWORD = os.environ['pass']  # put these in Heroku without quotation
 DEFAULT_FROM_EMAIL = 'no-reply<no_reply@domain.com>'
 
 # BASE_DIR = 'http://127.0.0.1:8000'
